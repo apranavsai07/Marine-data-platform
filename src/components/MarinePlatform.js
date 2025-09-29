@@ -116,7 +116,7 @@ const MarinePlatform = () => {
       }
       setIsLoading(false);
     }, 1500);
-  }, [formData.email, formData.password, users]);
+  }, [formData.email, formData.password, users, login, navigate]);
 
   const handleRegister = useCallback((e) => {
     e.preventDefault();
@@ -138,29 +138,29 @@ const MarinePlatform = () => {
       navigate('/home'); // Navigate to home after registration
       setIsLoading(false);
     }, 1500);
-  }, [formData]);
+  }, [formData, login, navigate]);
 
   const handleLogout = useCallback(() => {
-  setIsLoggedIn(false);
-  setUser(null);
-  setCurrentView('login');
-  setShowUserMenu(false);
-  setFormData({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    institution: ''
-  });
-  
-  // Call authLogout and navigate in the next tick
-  authLogout();
-  
-  // Use setTimeout to ensure state updates first
-  setTimeout(() => {
-    navigate('/', { replace: true });
-  }, 0);
-}, [authLogout, navigate]);
+    setIsLoggedIn(false);
+    setUser(null);
+    setCurrentView('login');
+    setShowUserMenu(false);
+    setFormData({
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      institution: ''
+    });
+
+    // Call authLogout and navigate in the next tick
+    authLogout();
+
+    // Use setTimeout to ensure state updates first
+    setTimeout(() => {
+      navigate('/', { replace: true });
+    }, 0);
+  }, [authLogout, navigate]);
 
   const switchToRegister = useCallback(() => {
     setCurrentView('register');
@@ -525,12 +525,12 @@ const MarinePlatform = () => {
             <li><span className="nav-link" onClick={() => handleNavigation('/data-hub')}>Data Hub</span></li>
             <li><span className="nav-link" onClick={() => handleNavigation('/analytics')}>Analytics</span></li>
           </ul>
-          
+
           {/* ADDED: User Dropdown Menu */}
           {isLoggedIn && user && (
             <div className="user-nav-container">
-              <div 
-                className="user-nav" 
+              <div
+                className="user-nav"
                 onClick={() => setShowUserMenu(!showUserMenu)}
                 style={{ cursor: 'pointer', position: 'relative' }}
               >
@@ -540,7 +540,7 @@ const MarinePlatform = () => {
                 </div>
                 <div className={`dropdown-arrow ${showUserMenu ? 'open' : ''}`}>▼</div>
               </div>
-              
+
               {showUserMenu && (
                 <div className="user-dropdown">
                   <div className="dropdown-header">
@@ -550,9 +550,9 @@ const MarinePlatform = () => {
                       <div className="dropdown-email">{user.email}</div>
                     </div>
                   </div>
-                  
+
                   <div className="dropdown-divider"></div>
-                  
+
                   <div className="dropdown-item" onClick={() => handleNavigation('/home')}>
                     🏠 Dashboard
                   </div>
@@ -568,18 +568,18 @@ const MarinePlatform = () => {
                   <div className="dropdown-item" onClick={() => handleNavigation('/data-hub')}>
                     🗄️ My Data
                   </div>
-                  
+
                   <div className="dropdown-divider"></div>
-                  
+
                   <div className="dropdown-item" onClick={() => alert('Help & Support coming soon!')}>
                     ❓ Help & Support
                   </div>
                   <div className="dropdown-item" onClick={() => alert('Documentation coming soon!')}>
                     📚 Documentation
                   </div>
-                  
+
                   <div className="dropdown-divider"></div>
-                  
+
                   <div className="dropdown-item logout" onClick={handleLogout}>
                     🚪 Sign Out
                   </div>

@@ -147,7 +147,7 @@ const PageTemplate = ({ children, title, subtitle, activePage }) => {
 
 // Analytics Page
 const Analytics = () => {
-  const navigate = useNavigate();
+
 
   const ChartCard = ({ title, type, data, description }) => (
     <div className="chart-card">

@@ -147,7 +147,7 @@ const PageTemplate = ({ children, title, subtitle, activePage }) => {
 
 // Data Hub Page
 const DataHub = () => {
-  const navigate = useNavigate();
+ 
 
   const DatasetCard = ({ name, size, type, lastModified, accessibility }) => (
     <div className="dataset-card">
