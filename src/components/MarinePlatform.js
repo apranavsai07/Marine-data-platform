@@ -180,7 +180,7 @@ const MarinePlatform = () => {
             {user.firstName.charAt(0)}{user.lastName.charAt(0)}
           </div>
           <div className="user-info">
-            <h2 className="user-name">Welcome back, {user.firstName}!</h2>
+            <h2 className="user-name">Smart ogin, {user.firstName}!</h2>
             <p className="user-institution">{user.institution}</p>
             <p className="user-email">{user.email}</p>
           </div>
@@ -241,7 +241,7 @@ const MarinePlatform = () => {
 
   const LoginForm = useMemo(() => (
     <div className="login-container" key="login-form-container">
-      <h2 className="login-title">Welcome Back</h2>
+      <h2 className="login-title">Welcome</h2>
       <p className="login-subtitle">Sign in to access your marine research tools</p>
 
       <form onSubmit={handleLogin} key="login-form">
@@ -515,7 +515,7 @@ const MarinePlatform = () => {
 
       <nav className="navbar">
         <div className="logo">
-          CMLRE Marine Platform
+          AQUAINTEL
         </div>
         <div className="nav-content">
           <ul className="nav-links">
@@ -598,8 +598,10 @@ const MarinePlatform = () => {
           <p className="hero-subtitle">
             {isLoggedIn
               ? `Continue your marine research journey with advanced AI-powered tools and analytics.`
-              : `Unifying oceanography, taxonomy, and molecular biology through AI-powered analytics 
-                 for sustainable marine ecosystem management and conservation.`
+              : `At the Marine Data Platform, our mission is to unify oceanography, taxonomy, and molecular biology through 
+              AI-driven analytics. We aim to empower researchers, educators, and institutions with accessible, 
+              intelligent tools that accelerate marine discoveries, promote sustainable ecosystem management, and foster 
+              global collaboration for the protection of our oceans.`
             }
           </p>
 

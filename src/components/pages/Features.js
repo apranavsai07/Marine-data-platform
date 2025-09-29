@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const PageTemplate = ({ children, title, subtitle, activePage }) => {
   const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -78,7 +79,7 @@ const PageTemplate = ({ children, title, subtitle, activePage }) => {
               onClick={() => setShowUserMenu(!showUserMenu)}
               style={{ cursor: 'pointer', position: 'relative' }}
             >
-              <span className="user-greeting">Hello, Dr. Sarah</span>
+              <span className="user-greeting">Hello,User</span>
               <div className="user-avatar-small">S</div>
               <div className={`dropdown-arrow ${showUserMenu ? 'open' : ''}`}>▼</div>
             </div>
@@ -88,7 +89,7 @@ const PageTemplate = ({ children, title, subtitle, activePage }) => {
                 <div className="dropdown-header">
                   <div className="dropdown-avatar">S</div>
                   <div className="dropdown-user-info">
-                    <div className="dropdown-name">Dr. Sarah Johnson</div>
+                    <div className="dropdown-name">User</div>
                     <div className="dropdown-email">demo@marine.org</div>
                   </div>
                 </div>

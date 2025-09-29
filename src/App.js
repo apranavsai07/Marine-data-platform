@@ -23,18 +23,6 @@ export const useAuth = () => {
   return context;
 };
 
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  
-  if (!isAuthenticated) {
-    // Redirect to login page if not authenticated
-    return <Navigate to="/" replace />;
-  }
-  
-  return children;
-};
-
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
@@ -57,71 +45,29 @@ function App() {
             {/* Public route - Landing page with login */}
             <Route path="/" element={<MarinePlatform />} />
             
+            {/* Public routes - Allow guest access */}
+            <Route path="/home" element={<Home />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/research" element={<Research />} />
+            <Route path="/data-hub" element={<DataHub />} />
+            <Route path="/analytics" element={<Analytics />} />
+            
             {/* Protected routes - Require authentication */}
-            <Route 
-              path="/home" 
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/features" 
-              element={
-                <ProtectedRoute>
-                  <Features />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/research" 
-              element={
-                <ProtectedRoute>
-                  <Research />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/data-hub" 
-              element={
-                <ProtectedRoute>
-                  <DataHub />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/analytics" 
-              element={
-                <ProtectedRoute>
-                  <Analytics />
-                </ProtectedRoute>
-              } 
-            />
             <Route 
               path="/profile" 
               element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
+                isAuthenticated ? <Profile /> : <Navigate to="/" replace />
               } 
             />
             <Route 
               path="/settings" 
               element={
-                <ProtectedRoute>
-                  <Settings />
-                </ProtectedRoute>
+                isAuthenticated ? <Settings /> : <Navigate to="/" replace />
               } 
             />
 
-            {/* Catch all - redirect to home if authenticated, login if not */}
-            <Route 
-              path="*" 
-              element={
-                isAuthenticated ? <Navigate to="/home" replace /> : <Navigate to="/" replace />
-              } 
-            />
+            {/* Catch all - redirect to landing page */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       </Router>
