@@ -61,7 +61,7 @@ const PageTemplate = ({ children, title, subtitle, activePage }) => {
           onClick={() => handleNavigation('/')}
           style={{ cursor: 'pointer' }}
         >
-          CMLRE Marine Platform
+          AQUAINTEL
         </div>
         <div className="nav-content">
           <ul className="nav-links">
